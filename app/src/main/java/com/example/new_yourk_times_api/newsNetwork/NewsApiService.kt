@@ -22,7 +22,7 @@ private val retrofit =Retrofit.Builder()
 
 interface NewsApiService {
     @GET ("?api-key=GyLLprJLwCaYdoOePX2GzsdUHt2oRhtW")
-    fun getProperties(): Call<List<Doc>>
+    fun getProperties(): Call<Doc>
 }
 
 object NewsApi {

@@ -24,12 +24,12 @@ class NewsListViewModel : ViewModel() {
 
 
     private fun getNewsProperties() {
-        NewsApi.retrofitService.getProperties().enqueue(object : Callback<List<Doc>> {
-            override fun onFailure(call: Call<List<Doc>>, t: Throwable) {
+        NewsApi.retrofitService.getProperties().enqueue(object : Callback<Doc> {
+            override fun onFailure(call: Call<Doc>, t: Throwable) {
                 _response.value = "Failure: " + t.message
             }
 
-            override fun onResponse(call: Call<List<Doc>>, response: Response<List<Doc>>) {
+            override fun onResponse(call: Call<Doc>, response: Response<Doc>) {
                 _response.value = "Success: ${response} News properties"
             }
         })
