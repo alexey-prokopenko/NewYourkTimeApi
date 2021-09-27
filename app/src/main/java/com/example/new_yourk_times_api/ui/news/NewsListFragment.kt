@@ -1,10 +1,11 @@
-package com.example.new_yourk_times_api.ui
+package com.example.new_yourk_times_api.ui.news
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.new_yourk_times_api.data.network.NewsApiService
 import com.example.new_yourk_times_api.data.network.NyTimesApi
@@ -68,7 +69,10 @@ class NewsListFragment : Fragment(), NewsView {
     }
 
     private fun onNewsClick(news: News) {
-        presenter.onUserClick(news)
+        val newsUrl = news.url
+        view?.findNavController()
+            ?.navigate(NewsListFragmentDirections
+                .actionNewsListFragmentToNewsDetailFragment(newsUrl))
     }
 
 }

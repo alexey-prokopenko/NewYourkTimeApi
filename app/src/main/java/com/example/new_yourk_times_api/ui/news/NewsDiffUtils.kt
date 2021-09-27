@@ -1,4 +1,4 @@
-package com.example.new_yourk_times_api.ui
+package com.example.new_yourk_times_api.ui.news
 
 import androidx.recyclerview.widget.DiffUtil
 import com.example.new_yourk_times_api.data.templates.News

@@ -1,4 +1,4 @@
-package com.example.new_yourk_times_api.ui
+package com.example.new_yourk_times_api.ui.news
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -51,7 +51,7 @@ class NewsAdapter(private val clickListener: (News) -> Unit) :
         fun bind(news: News) {
             binding.root.setOnClickListener { clickListener(news) }
             binding.snippetField.text = news.snippet
-            binding.urlField.text = news.url
+            binding.section.text = news.section
         }
     }
 

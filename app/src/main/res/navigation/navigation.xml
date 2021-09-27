@@ -7,7 +7,25 @@
 
     <fragment
         android:id="@+id/newsListFragment"
-        android:name="com.example.new_yourk_times_api.ui.NewsListFragment"
+        android:name="com.example.new_yourk_times_api.ui.news.NewsListFragment"
         android:label="fragment_news_list"
-        tools:layout="@layout/fragment_news_list" />
+        tools:layout="@layout/fragment_news_list" >
+        <action
+            android:id="@+id/action_newsListFragment_to_newsDetailFragment"
+            app:destination="@id/newsDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/booksListFragment"
+        android:name="com.example.new_yourk_times_api.booksList.BooksListFragment"
+        android:label="fragment_books_list"
+        tools:layout="@layout/fragment_books_list" />
+    <fragment
+        android:id="@+id/newsDetailFragment"
+        android:name="com.example.new_yourk_times_api.ui.news.NewsDetailFragment"
+        android:label="fragment_news_detail"
+        tools:layout="@layout/fragment_news_detail" >
+        <argument
+            android:name="newsUrl"
+            app:argType="string" />
+    </fragment>
 </navigation>
