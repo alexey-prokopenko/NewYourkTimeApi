@@ -1,17 +1,72 @@
 package com.example.new_yourk_times_api.ui.books
 
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.example.new_yourk_times_api.data.network.books.BooksApiService
+import com.example.new_yourk_times_api.data.network.books.NyTimesApiBooks
+import com.example.new_yourk_times_api.data.repoitory.BooksRepository
+import com.example.new_yourk_times_api.data.repoitory.BooksRepositoryImpl
+import com.example.new_yourk_times_api.data.templates.Books
+import com.example.new_yourk_times_api.databinding.FragmentBooksListBinding
+import com.example.new_yourk_times_api.presenter.BooksPresenter
+import com.google.android.material.snackbar.Snackbar
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [BooksListFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class BooksListFragment : Fragment() {
+class BooksListFragment : Fragment(), BooksView {
+
+    private val nyTimesApiBooks: NyTimesApiBooks by lazy { BooksApiService.nyTimesApiBooks }
+    private val booksRepository: BooksRepository by lazy { BooksRepositoryImpl(nyTimesApiBooks) }
+    private val presenter: BooksPresenter by lazy(LazyThreadSafetyMode.NONE) {
+        BooksPresenter(booksRepository)
+    }
+
+    /*private val booksAdapter: BooksAdapter by lazy(LazyThreadSafetyMode.NONE) {
+        BooksAdapter(::onBooksClick)
+    }*/
+
+    private lateinit var binding: FragmentBooksListBinding
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        binding = FragmentBooksListBinding.inflate(inflater)
+
+        presenter.attach(this)
+
+        presenter.getListOfBooks()
+        setHasOptionsMenu(true)
+
+        return binding.root
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        presenter.detach()
+    }
+
+    override fun showLoader(isShow: Boolean) {
+
+    }
+
+    override fun showMessage(message: String) {
+        Snackbar.make(binding.root, message, Snackbar.LENGTH_SHORT).show()
+    }
+
+    override fun updateBooks(books: List<Books>) {
+        TODO("Not yet implemented")
+    }
+
+    /*override fun updateBooks(books: List<Books>) {
+        booksAdapter.update(books)
+    }
+
+    private fun initRecycler() {
+        with(binding.booksRecucler)
+    }*/
+
 
 }

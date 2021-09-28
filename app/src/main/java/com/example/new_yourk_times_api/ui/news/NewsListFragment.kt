@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.new_yourk_times_api.data.network.NewsApiService
-import com.example.new_yourk_times_api.data.network.NyTimesApi
+import com.example.new_yourk_times_api.data.network.news.NewsApiService
+import com.example.new_yourk_times_api.data.network.news.NyTimesApi
 import com.example.new_yourk_times_api.data.repoitory.NewsRepository
 import com.example.new_yourk_times_api.data.repoitory.NewsRepositoryImpl
 import com.example.new_yourk_times_api.data.templates.News

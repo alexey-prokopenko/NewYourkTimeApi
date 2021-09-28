@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/booksListFragment"
-        android:name="com.example.new_yourk_times_api.booksList.BooksListFragment"
+        android:name="com.example.new_yourk_times_api.ui.books.BooksListFragment"
         android:label="fragment_books_list"
         tools:layout="@layout/fragment_books_list" />
     <fragment

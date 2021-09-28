@@ -1,6 +1,7 @@
-package com.example.new_yourk_times_api.data.network
+package com.example.new_yourk_times_api.data.network.news
 
 
+import com.example.new_yourk_times_api.data.network.ApiKeyInterceptor
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import okhttp3.OkHttpClient
