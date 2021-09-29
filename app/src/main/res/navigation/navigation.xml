@@ -18,7 +18,11 @@
         android:id="@+id/booksListFragment"
         android:name="com.example.new_yourk_times_api.ui.books.BooksListFragment"
         android:label="fragment_books_list"
-        tools:layout="@layout/fragment_books_list" />
+        tools:layout="@layout/fragment_books_list" >
+        <action
+            android:id="@+id/action_booksListFragment_to_booksDetailFragment"
+            app:destination="@id/booksDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/newsDetailFragment"
         android:name="com.example.new_yourk_times_api.ui.news.NewsDetailFragment"
@@ -26,6 +30,15 @@
         tools:layout="@layout/fragment_news_detail" >
         <argument
             android:name="newsUrl"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/booksDetailFragment"
+        android:name="com.example.new_yourk_times_api.ui.books.BooksDetailFragment"
+        android:label="fragment_books_detail"
+        tools:layout="@layout/fragment_books_detail" >
+        <argument
+            android:name="booksUrl"
             app:argType="string" />
     </fragment>
 </navigation>
