@@ -21,7 +21,8 @@
             android:textSize="24sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="Some Title" />
+            tools:text="Some Title"
+            android:textColor="#FF9800"/>
 
         <TextView
             android:id="@+id/description"
