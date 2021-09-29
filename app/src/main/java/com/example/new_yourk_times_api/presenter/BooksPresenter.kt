@@ -27,7 +27,7 @@ class BooksPresenter (private val booksRepository: BooksRepository){
                     val books = results.map { resultsItem ->
                         Books(
                             urlAmazon = resultsItem?.amazonProductUrl.orEmpty(),
-                            booksDetail = resultsItem?.bookDetails.orEmpty(),
+                            booksDetail = resultsItem?.bookDetails.orEmpty()
                         )
                     }
                     view?.updateBooks(books)
@@ -41,5 +41,13 @@ class BooksPresenter (private val booksRepository: BooksRepository){
 
         })
     }
+
+    /*fun getBooksInfo (booksDetail : List<BookDetailsItem?> ) =
+        booksDetail.map {booksItem -> BookInfo (
+            title = booksItem?.title.orEmpty(),
+            description = booksItem?.description.orEmpty(),
+            author = booksItem?.author.orEmpty()
+                ) }*/
+
 
 }

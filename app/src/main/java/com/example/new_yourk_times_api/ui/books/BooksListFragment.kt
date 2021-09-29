@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.new_yourk_times_api.data.network.books.BooksApiService
 import com.example.new_yourk_times_api.data.network.books.NyTimesApiBooks
 import com.example.new_yourk_times_api.data.repoitory.BooksRepository
@@ -23,9 +24,9 @@ class BooksListFragment : Fragment(), BooksView {
         BooksPresenter(booksRepository)
     }
 
-    /*private val booksAdapter: BooksAdapter by lazy(LazyThreadSafetyMode.NONE) {
+    private val booksAdapter: BooksAdapter by lazy(LazyThreadSafetyMode.NONE) {
         BooksAdapter(::onBooksClick)
-    }*/
+    }
 
     private lateinit var binding: FragmentBooksListBinding
     override fun onCreateView(
@@ -36,7 +37,7 @@ class BooksListFragment : Fragment(), BooksView {
         binding = FragmentBooksListBinding.inflate(inflater)
 
         presenter.attach(this)
-
+        initRecycler()
         presenter.getListOfBooks()
         setHasOptionsMenu(true)
 
@@ -56,17 +57,26 @@ class BooksListFragment : Fragment(), BooksView {
         Snackbar.make(binding.root, message, Snackbar.LENGTH_SHORT).show()
     }
 
-    override fun updateBooks(books: List<Books>) {
-        TODO("Not yet implemented")
-    }
 
-    /*override fun updateBooks(books: List<Books>) {
+
+    override fun updateBooks(books: List<Books>) {
         booksAdapter.update(books)
     }
 
     private fun initRecycler() {
-        with(binding.booksRecucler)
-    }*/
+        with(binding.booksRecycler) {
+            layoutManager = LinearLayoutManager(context)
+            adapter = booksAdapter
+        }
+    }
+    private fun onBooksClick(books: Books) {
+        Snackbar.make(binding.root, "CliCKED", Snackbar.LENGTH_SHORT).show()
+        /*val newsUrl = books.urlAmazon
+        view?.findNavController()
+            ?.navigate(
+                NewsListFragmentDirections
+                .actionNewsListFragmentToNewsDetailFragment(newsUrl))*/
+    }
 
 
 }
