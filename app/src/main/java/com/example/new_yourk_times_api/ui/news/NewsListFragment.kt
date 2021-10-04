@@ -157,7 +157,6 @@ class NewsListFragment : Fragment(), NewsView {
     }
 
 
-
     private fun onNewsClick(news: NewsVO) {
         view?.findNavController()
             ?.navigate(NewsListFragmentDirections

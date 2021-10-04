@@ -11,7 +11,7 @@ class NewsVoMapper: Mapper<NewsDb, NewsVO> {
                 url = url,
                 snippet = snippet,
                 section = section,
-                pubDate = pubDate
+                pubDate = pubDate.substring(0, pubDate.length-14)
             )
     }
 }
