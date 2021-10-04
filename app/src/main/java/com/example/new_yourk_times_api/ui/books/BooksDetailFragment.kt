@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.*
 import android.webkit.WebView
 import android.webkit.WebViewClient
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.new_yourk_times_api.databinding.FragmentBooksDetailBinding
 
@@ -19,11 +19,16 @@ class BooksDetailFragment : Fragment() {
     ): View? {
 
         val args = BooksDetailFragmentArgs.fromBundle(requireArguments())
-        Toast.makeText(context, "NumCorrect: ${args.booksUrl}", Toast.LENGTH_LONG).show()
 
         binding = FragmentBooksDetailBinding.inflate(inflater)
         setUpWebView(args.booksUrl)
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val args = BooksDetailFragmentArgs.fromBundle(requireArguments())
+        (activity as AppCompatActivity).supportActionBar?.title = args.booksTitle
     }
 
     private fun setUpWebView (url: String) {

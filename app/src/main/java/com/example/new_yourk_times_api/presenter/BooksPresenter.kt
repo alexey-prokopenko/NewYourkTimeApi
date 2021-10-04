@@ -42,12 +42,4 @@ class BooksPresenter (private val booksRepository: BooksRepository){
         })
     }
 
-    /*fun getBooksInfo (booksDetail : List<BookDetailsItem?> ) =
-        booksDetail.map {booksItem -> BookInfo (
-            title = booksItem?.title.orEmpty(),
-            description = booksItem?.description.orEmpty(),
-            author = booksItem?.author.orEmpty()
-                ) }*/
-
-
 }

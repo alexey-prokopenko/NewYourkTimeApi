@@ -4,8 +4,9 @@ import android.os.Bundle
 import android.view.*
 import android.webkit.WebView
 import android.webkit.WebViewClient
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.example.new_yourk_times_api.R
 import com.example.new_yourk_times_api.databinding.FragmentNewsDetailBinding
 
 
@@ -21,11 +22,15 @@ class NewsDetailFragment : Fragment() {
      ): View? {
 
           val args = NewsDetailFragmentArgs.fromBundle(requireArguments())
-          Toast.makeText(context, "NumCorrect: ${args.newsUrl}", Toast.LENGTH_LONG).show()
 
           binding = FragmentNewsDetailBinding.inflate(inflater)
           setUpWebView(args.newsUrl)
           return binding.root
+     }
+
+     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+          super.onViewCreated(view, savedInstanceState)
+          (activity as AppCompatActivity).supportActionBar?.title = getString(R.string.title_News_detail)
      }
 
      private fun setUpWebView (url: String) {

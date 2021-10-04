@@ -40,5 +40,8 @@
         <argument
             android:name="booksUrl"
             app:argType="string" />
+        <argument
+            android:name="booksTitle"
+            app:argType="string" />
     </fragment>
 </navigation>

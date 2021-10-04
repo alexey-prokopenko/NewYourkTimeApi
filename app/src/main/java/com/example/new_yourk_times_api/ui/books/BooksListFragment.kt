@@ -4,9 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.new_yourk_times_api.R
 import com.example.new_yourk_times_api.data.network.books.BooksApiService
 import com.example.new_yourk_times_api.data.network.books.NyTimesApiBooks
 import com.example.new_yourk_times_api.data.repoitory.BooksRepository
@@ -45,6 +47,11 @@ class BooksListFragment : Fragment(), BooksView {
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        (activity as AppCompatActivity).supportActionBar?.title = getString(R.string.title_books_list)
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         presenter.detach()
@@ -57,8 +64,6 @@ class BooksListFragment : Fragment(), BooksView {
     override fun showMessage(message: String) {
         Snackbar.make(binding.root, message, Snackbar.LENGTH_SHORT).show()
     }
-
-
 
     override fun updateBooks(books: List<Books>) {
         booksAdapter.update(books)
@@ -74,7 +79,9 @@ class BooksListFragment : Fragment(), BooksView {
         view?.findNavController()
             ?.navigate(
                 BooksListFragmentDirections
-                .actionBooksListFragmentToBooksDetailFragment(books.urlAmazon))
+                .actionBooksListFragmentToBooksDetailFragment(books.urlAmazon,
+                    books.title.toString().drop(1).dropLast(1)
+                ))
     }
 
 }
