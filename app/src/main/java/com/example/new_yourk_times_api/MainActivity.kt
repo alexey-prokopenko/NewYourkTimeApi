@@ -16,6 +16,7 @@ import com.example.new_yourk_times_api.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
+
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,14 +61,14 @@ class MainActivity : AppCompatActivity() {
         return false
     }
 
-    private fun internetDialog (){
+    private fun internetDialog() {
         val builder = AlertDialog.Builder(this)
-         with(builder) {
-           setTitle(R.string.title_internet_connection)
-           setMessage(R.string.internet_connection)
-           setNeutralButton("OK"){_, _->}
-           show()
-       }
+        with(builder) {
+            setTitle(R.string.title_internet_connection)
+            setMessage(R.string.internet_connection)
+            setNeutralButton("OK") { _, _ -> }
+            show()
+        }
 
     }
 }

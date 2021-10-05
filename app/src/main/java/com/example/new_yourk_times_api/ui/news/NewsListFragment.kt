@@ -15,7 +15,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.new_yourk_times_api.R
 import com.example.new_yourk_times_api.application.executors.BackgroundExecutor
 import com.example.new_yourk_times_api.application.executors.Executors
-import com.example.new_yourk_times_api.application.executors.UiThreadExecutor
 import com.example.new_yourk_times_api.data.database.DatabaseHolder
 import com.example.new_yourk_times_api.data.database.NewsDatabase
 import com.example.new_yourk_times_api.data.domain.mappers.Mapper
@@ -38,7 +37,6 @@ import com.google.android.material.snackbar.Snackbar
 class NewsListFragment : Fragment(), NewsView {
 
     private val executors: Executors = Executors(
-        mainThread  = UiThreadExecutor(),
         background = BackgroundExecutor()
     )
 
@@ -46,7 +44,8 @@ class NewsListFragment : Fragment(), NewsView {
     private val database: NewsDatabase by lazy { DatabaseHolder.newsDatabase }
     private val newsMapper: Mapper<DocsItem?, NewsDb> = NewsMapper()
     private val newsRepository: NewsRepository by lazy {
-        NewsRepositoryImpl(nyTimesApi, newsMapper,  database, executors) }
+        NewsRepositoryImpl(nyTimesApi, newsMapper, database, executors)
+    }
     private val newsVoMapper: Mapper<NewsDb, NewsVO> = NewsVoMapper()
     private val presenter: NewsPresenter by lazy(LazyThreadSafetyMode.NONE) {
         NewsPresenter(newsRepository, newsVoMapper)
@@ -61,7 +60,7 @@ class NewsListFragment : Fragment(), NewsView {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentNewsListBinding.inflate(inflater)
 
         presenter.attach(this)
@@ -77,7 +76,8 @@ class NewsListFragment : Fragment(), NewsView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        (activity as AppCompatActivity).supportActionBar?.title = getString(R.string.title_News_list)
+        (activity as AppCompatActivity).supportActionBar?.title =
+            getString(R.string.title_News_list)
     }
 
     override fun onDestroy() {
@@ -93,11 +93,9 @@ class NewsListFragment : Fragment(), NewsView {
         Snackbar.make(binding.root, message, Snackbar.LENGTH_SHORT).show()
     }
 
-
     override fun updateNews(news: List<VisualObject>) {
         newsAdapter.update(news)
     }
-
 
     private fun initRecycler() {
         with(binding.newsRecycler) {
@@ -156,14 +154,15 @@ class NewsListFragment : Fragment(), NewsView {
         }
     }
 
-
     private fun onNewsClick(news: NewsVO) {
         view?.findNavController()
-            ?.navigate(NewsListFragmentDirections
-                .actionNewsListFragmentToNewsDetailFragment(news.url))
+            ?.navigate(
+                NewsListFragmentDirections
+                    .actionNewsListFragmentToNewsDetailFragment(news.url)
+            )
     }
 
-    private fun getCurrentCategory() : String =
+    private fun getCurrentCategory(): String =
         NewsSection.values()[binding.sectionsSpinner.selectedItemPosition].section
 
 }

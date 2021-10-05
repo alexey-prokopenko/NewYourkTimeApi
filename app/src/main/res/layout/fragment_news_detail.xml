@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".ui.news.NewsDetailFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+
     <WebView
         android:id="@+id/wb_webView"
         android:layout_width="match_parent"

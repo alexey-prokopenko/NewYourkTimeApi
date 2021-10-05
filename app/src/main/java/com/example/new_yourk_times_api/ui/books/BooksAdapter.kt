@@ -8,7 +8,7 @@ import com.example.new_yourk_times_api.databinding.ListItemBooksBinding
 import com.example.new_yourk_times_api.ui.books.templates.BooksVO
 import com.example.new_yourk_times_api.ui.news.templates.VisualObject
 
-class BooksAdapter (private val clickListener: (BooksVO) -> Unit) :
+class BooksAdapter(private val clickListener: (BooksVO) -> Unit) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var items: List<VisualObject> = emptyList()
@@ -16,8 +16,7 @@ class BooksAdapter (private val clickListener: (BooksVO) -> Unit) :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val binding =
             ListItemBooksBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-            return BooksViewHolder(binding, clickListener)
-
+        return BooksViewHolder(binding, clickListener)
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {

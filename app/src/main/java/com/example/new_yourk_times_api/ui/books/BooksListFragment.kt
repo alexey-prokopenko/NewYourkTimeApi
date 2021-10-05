@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.new_yourk_times_api.R
 import com.example.new_yourk_times_api.application.executors.BackgroundExecutor
 import com.example.new_yourk_times_api.application.executors.Executors
-import com.example.new_yourk_times_api.application.executors.UiThreadExecutor
 import com.example.new_yourk_times_api.data.database.DatabaseHolder
 import com.example.new_yourk_times_api.data.database.NewsDatabase
 import com.example.new_yourk_times_api.data.domain.mappers.BooksMapper
@@ -34,7 +33,6 @@ import com.google.android.material.snackbar.Snackbar
 class BooksListFragment : Fragment(), BooksView {
 
     private val executors: Executors = Executors(
-        mainThread = UiThreadExecutor(),
         background = BackgroundExecutor()
     )
 
@@ -58,7 +56,7 @@ class BooksListFragment : Fragment(), BooksView {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentBooksListBinding.inflate(inflater)
 
         presenter.attach(this)
@@ -113,7 +111,7 @@ class BooksListFragment : Fragment(), BooksView {
                 BooksListFragmentDirections
                     .actionBooksListFragmentToBooksDetailFragment(
                         books.urlAmazon,
-                        books.title.toString().drop(1).dropLast(1)
+                        books.title.drop(1).dropLast(1)
                     )
             )
     }

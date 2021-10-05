@@ -8,7 +8,7 @@ import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
 import com.example.new_yourk_times_api.databinding.SplashScreenBinding
 
-class SplashScreen: AppCompatActivity(){
+class SplashScreen : AppCompatActivity() {
 
     private lateinit var binding: SplashScreenBinding
 

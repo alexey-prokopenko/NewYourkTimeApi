@@ -5,7 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "news")
-class NewsDb (
+class NewsDb(
 
     @PrimaryKey
     @ColumnInfo(name = "url")

@@ -1,5 +1,6 @@
 package com.example.new_yourk_times_api.ui.books
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.*
 import android.webkit.WebView
@@ -16,7 +17,7 @@ class BooksDetailFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         val args = BooksDetailFragmentArgs.fromBundle(requireArguments())
 
@@ -31,8 +32,9 @@ class BooksDetailFragment : Fragment() {
         (activity as AppCompatActivity).supportActionBar?.title = args.booksTitle
     }
 
-    private fun setUpWebView (url: String) {
-        val wbWebview : WebView = binding.wbWebView
+    @SuppressLint("SetJavaScriptEnabled")
+    private fun setUpWebView(url: String) {
+        val wbWebview: WebView = binding.wbWebView
         wbWebview.loadUrl(url)
 
         val webSetting = wbWebview.settings
@@ -41,10 +43,11 @@ class BooksDetailFragment : Fragment() {
         wbWebview.webViewClient = WebViewClient()
 
         wbWebview.canGoBack()
-        wbWebview.setOnKeyListener(View.OnKeyListener{ v, keyCode, event ->
+        wbWebview.setOnKeyListener(View.OnKeyListener { _, keyCode, event ->
             if (keyCode == KeyEvent.KEYCODE_BACK
                 && event.action == MotionEvent.ACTION_UP
-                && wbWebview.canGoBack()){
+                && wbWebview.canGoBack()
+            ) {
                 wbWebview.goBack()
                 return@OnKeyListener true
             }

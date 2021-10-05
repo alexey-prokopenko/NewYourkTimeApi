@@ -9,15 +9,16 @@ import com.example.new_yourk_times_api.ui.news.templates.DateVO
 import com.example.new_yourk_times_api.ui.news.templates.NewsVO
 import com.example.new_yourk_times_api.ui.news.templates.VisualObject
 
-class NewsPresenter (private val newsRepository: NewsRepository,
+class NewsPresenter(
+    private val newsRepository: NewsRepository,
     private val newsVoMapper: Mapper<NewsDb, NewsVO>
-){
+) {
 
     private var view: NewsView? = null
 
     private var news: List<VisualObject> = emptyList()
 
-    fun attach(view: NewsView){
+    fun attach(view: NewsView) {
         this.view = view
     }
 
@@ -25,7 +26,7 @@ class NewsPresenter (private val newsRepository: NewsRepository,
         view = null
     }
 
-    fun loadData(forceUpdate: Boolean, section: String){
+    fun loadData(forceUpdate: Boolean, section: String) {
         view?.showLoader(true)
         newsRepository.getNews(
             forceUpdate = forceUpdate,
@@ -34,8 +35,8 @@ class NewsPresenter (private val newsRepository: NewsRepository,
         )
     }
 
-    fun handleQuery(query: CharSequence){
-        var filteredList = news.filter{vo ->
+    fun handleQuery(query: CharSequence) {
+        val filteredList = news.filter { vo ->
             when (vo) {
                 is NewsVO -> {
                     vo.snippet.contains(query, true) ||
@@ -44,7 +45,7 @@ class NewsPresenter (private val newsRepository: NewsRepository,
                 }
                 else -> true
             }
-        }.filterIndexed{ index, vo ->
+        }.filterIndexed { index, vo ->
             when (vo) {
                 is NewsVO -> true
                 is DateVO -> {
@@ -57,8 +58,8 @@ class NewsPresenter (private val newsRepository: NewsRepository,
                     } else false
                 }
                 else -> false
-                }
             }
+        }
         view?.updateNews(filteredList)
 
     }
@@ -88,12 +89,12 @@ class NewsPresenter (private val newsRepository: NewsRepository,
             var currentDate = DateVO(newsVO.first().pubDate)
             dataList.add(currentDate)
 
-           newsVO.forEach { newsVO ->
-                if (currentDate.name != newsVO.pubDate) {
-                    currentDate = DateVO(newsVO.pubDate)
+            newsVO.forEach { newsVo ->
+                if (currentDate.name != newsVo.pubDate) {
+                    currentDate = DateVO(newsVo.pubDate)
                     dataList.add(currentDate)
                 }
-                dataList.add(newsVO)
+                dataList.add(newsVo)
             }
         }
         return dataList

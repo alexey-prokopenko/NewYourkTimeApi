@@ -1,6 +1,6 @@
 package com.example.new_yourk_times_api.data.domain
 
-interface ResultListener<T>{
+interface ResultListener<T> {
 
     fun onSuccess(data: T)
 

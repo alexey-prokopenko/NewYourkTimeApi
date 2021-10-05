@@ -5,11 +5,11 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "books")
-class BooksDb (
+class BooksDb(
 
     @PrimaryKey
     @ColumnInfo(name = "urlAmazon")
-    val urlAmazon : String,
+    val urlAmazon: String,
 
     @ColumnInfo(name = "title")
     val title: String,
