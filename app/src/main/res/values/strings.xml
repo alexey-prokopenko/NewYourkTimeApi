@@ -8,6 +8,10 @@
     <string name="title_News_list">News from New Yourk Times</string>
     <string name="title_News_detail">New Yourk Times</string>
     <string name="title_Books_detail">New Yourk Times</string>
+    <string name="internet_connection">Сheck internet connections</string>
+    <string name="title_internet_connection">Trouble with internet connection</string>
+
+
 
     <string-array name="sections_array">
 

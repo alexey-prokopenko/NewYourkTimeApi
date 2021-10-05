@@ -11,7 +11,6 @@ class NewsDb (
     @ColumnInfo(name = "url")
     val url: String,
 
-
     @ColumnInfo(name = "snippet")
     val snippet: String,
 

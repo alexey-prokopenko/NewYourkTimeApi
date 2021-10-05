@@ -1,6 +1,9 @@
 package com.example.new_yourk_times_api.data.database
 
-import androidx.room.*
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.Query
 import com.example.new_yourk_times_api.data.domain.models.NewsDb
 
 
@@ -17,8 +20,9 @@ interface NewsDao {
     fun findBySection (section: String) : NewsDb
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertAll(stories: List<NewsDb>)
+    fun insertAll(news: List<NewsDb>)
 
-    @Delete
-    fun delete(user: NewsDb)
 }
+
+
+

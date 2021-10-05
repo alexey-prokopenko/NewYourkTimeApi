@@ -12,5 +12,5 @@ object DatabaseHolder {
     private fun createDatabase(): NewsDatabase = Room.databaseBuilder(
         App.applicationContext(),
         NewsDatabase::class.java,
-                DATABASE_NAME).build()
+                DATABASE_NAME).fallbackToDestructiveMigration().build()
 }

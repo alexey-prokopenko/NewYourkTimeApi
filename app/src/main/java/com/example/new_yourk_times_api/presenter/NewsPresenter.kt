@@ -80,8 +80,6 @@ class NewsPresenter (private val newsRepository: NewsRepository,
             view?.showLoader(false)
             view?.showMessage("Something is wrong")
         }
-
-
     }
 
     private fun mapWithDates(newsVO: List<NewsVO>): MutableList<VisualObject> {

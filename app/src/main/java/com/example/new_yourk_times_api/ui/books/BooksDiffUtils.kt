@@ -1,9 +1,9 @@
 package com.example.new_yourk_times_api.ui.books
 
 import androidx.recyclerview.widget.DiffUtil
-import com.example.new_yourk_times_api.data.templates.Books
+import com.example.new_yourk_times_api.ui.news.templates.VisualObject
 
-class BooksDiffUtils (private val oldList: List<Books>, private val newList: List<Books>) :
+class BooksDiffUtils (private val oldList: List<VisualObject>, private val newList: List<VisualObject>) :
     DiffUtil.Callback() {
     override fun getOldListSize(): Int {
         return oldList.size
@@ -14,7 +14,7 @@ class BooksDiffUtils (private val oldList: List<Books>, private val newList: Lis
     }
 
     override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-        return newList[newItemPosition].urlAmazon == oldList[oldItemPosition].urlAmazon
+        return newList[newItemPosition].id == oldList[oldItemPosition].id
     }
 
     override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
